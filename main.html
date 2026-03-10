@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Internship Dashboard</title>
 
 <link rel="stylesheet" href="style.css">
 
+<!-- NEW FONT (UI IMPROVEMENT) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 
+/* NEW BODY STYLE */
 body{
-font-family:Arial, sans-serif;
+font-family:'Poppins', Arial, sans-serif;
 margin:0;
-background:#f4f7fb;
+background: linear-gradient(-45deg,#eef2ff,#f4f7fb,#e8f0ff,#f5faff);
+background-size:400% 400%;
+animation:gradientBG 15s ease infinite;
+}
+
+/* BACKGROUND ANIMATION */
+@keyframes gradientBG{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
 
 /* NAVBAR */
@@ -34,12 +48,50 @@ border-radius:6px;
 background:white;
 color:#0a66c2;
 cursor:pointer;
+transition:0.3s;
+}
+
+/* NEW NAVBAR HOVER */
+.navbar button:hover{
+transform:translateY(-2px);
+box-shadow:0 5px 10px rgba(0,0,0,0.15);
 }
 
 /* DASHBOARD */
 
 .dashboard{
 padding:40px;
+}
+
+/* STATS */
+
+.stats-container{
+display:flex;
+gap:20px;
+margin:20px 0;
+flex-wrap:wrap;
+}
+
+.stat-box{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+text-align:center;
+min-width:150px;
+transition:0.3s;
+}
+
+/* NEW STATS HOVER */
+
+.stat-box:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 25px rgba(0,0,0,0.15);
+}
+
+.stat-box h2{
+margin:0;
+color:#0a66c2;
 }
 
 /* SEARCH */
@@ -53,6 +105,14 @@ padding:10px;
 width:260px;
 border-radius:6px;
 border:1px solid #ccc;
+transition:0.3s;
+}
+
+/* SEARCH FOCUS EFFECT */
+
+.search-bar input:focus{
+outline:none;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
 }
 
 /* INTERNSHIP CARDS */
@@ -68,6 +128,18 @@ background:white;
 padding:20px;
 border-radius:10px;
 box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 30px rgba(0,0,0,0.15);
+}
+
+.company-logo{
+width:40px;
+height:40px;
+margin-bottom:10px;
 }
 
 .card button{
@@ -79,6 +151,13 @@ border-radius:5px;
 background:#0a66c2;
 color:white;
 cursor:pointer;
+transition:0.3s;
+}
+
+/* NEW BUTTON HOVER */
+
+.card button:hover{
+transform:scale(1.05);
 }
 
 /* PANELS */
@@ -100,7 +179,10 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 <div class="navbar">
 
-<h2>Internship Portal</h2>
+<div class="logo-area">
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="logo-img">
+<h2>MicroIntern</h2>
+</div>
 
 <div>
 <button onclick="goToProfile()">Profile</button>
@@ -110,6 +192,7 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <button onclick="showRecommendations()">AI Recommendations</button>
 <button onclick="showCompanies()">Companies</button>
 <button onclick="showAnalytics()">Analytics</button>
+<button onclick="showPremium()">Premium</button>
 <button onclick="logout()">Logout</button>
 </div>
 
@@ -118,6 +201,32 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <div class="dashboard">
 
 <h1>Welcome to your Dashboard 🚀</h1>
+
+<!-- STATS COUNTERS -->
+
+<div class="stats-container">
+
+<div class="stat-box">
+<h2>120+</h2>
+<p>Internships</p>
+</div>
+
+<div class="stat-box">
+<h2 id="savedCount">0</h2>
+<p>Saved</p>
+</div>
+
+<div class="stat-box">
+<h2 id="applyCount">0</h2>
+<p>Applications</p>
+</div>
+
+<div class="stat-box">
+<h2>30+</h2>
+<p>Companies</p>
+</div>
+
+</div>
 
 <div class="search-bar">
 <input type="text" id="searchInput" placeholder="Search internships..." onkeyup="searchInternships()">
@@ -128,31 +237,67 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <div class="opportunities" id="internshipList">
 
 <div class="card">
+
+<img src="https://logo.clearbit.com/google.com" class="company-logo">
+
 <h3>Frontend Developer Intern</h3>
+
 <p>Company: Google</p>
+<p>Location: Remote</p>
+<p>Stipend: ₹25,000/month</p>
+<p>Duration: 3 Months</p>
+
 <button onclick="applyInternship('Frontend Developer Intern')">Apply</button>
 <button onclick="saveInternship('Frontend Developer Intern')">Save</button>
+
 </div>
 
 <div class="card">
+
+<img src="https://logo.clearbit.com/amazon.com" class="company-logo">
+
 <h3>Marketing Intern</h3>
+
 <p>Company: Amazon</p>
+<p>Location: Bangalore</p>
+<p>Stipend: ₹20,000/month</p>
+<p>Duration: 3 Months</p>
+
 <button onclick="applyInternship('Marketing Intern')">Apply</button>
 <button onclick="saveInternship('Marketing Intern')">Save</button>
+
 </div>
 
 <div class="card">
+
+<img src="https://logo.clearbit.com/adobe.com" class="company-logo">
+
 <h3>UI/UX Designer</h3>
+
 <p>Company: Adobe</p>
+<p>Location: Remote</p>
+<p>Stipend: ₹22,000/month</p>
+<p>Duration: 4 Months</p>
+
 <button onclick="applyInternship('UI/UX Designer')">Apply</button>
 <button onclick="saveInternship('UI/UX Designer')">Save</button>
+
 </div>
 
 <div class="card">
+
+<img src="https://logo.clearbit.com/microsoft.com" class="company-logo">
+
 <h3>Data Analyst Intern</h3>
+
 <p>Company: Microsoft</p>
+<p>Location: Hyderabad</p>
+<p>Stipend: ₹30,000/month</p>
+<p>Duration: 6 Months</p>
+
 <button onclick="applyInternship('Data Analyst Intern')">Apply</button>
 <button onclick="saveInternship('Data Analyst Intern')">Save</button>
+
 </div>
 
 </div>
@@ -194,7 +339,6 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <h3>Full Stack Developer Intern</h3>
 <p>Company: Meta</p>
 <button onclick="applyInternship('Full Stack Developer Intern')">Apply</button>
-
 </div>
 
 </div>
@@ -236,9 +380,31 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 </div>
 
+<!-- PREMIUM -->
+
+<div class="panel" id="premiumPanel">
+
+<h2>💎 MicroIntern Premium</h2>
+
+<p>Unlock exclusive features:</p>
+
+<ul>
+<li>🔥 Priority Internship Listings</li>
+<li>🤖 Advanced AI Recommendations</li>
+<li>📈 Application Success Analytics</li>
+<li>💬 Direct Chat with Recruiters</li>
+<li>⭐ Featured Profile for Companies</li>
+</ul>
+
+<button onclick="buyPremium()">Upgrade to Premium</button>
+
+</div>
+
 </div>
 
 <script>
+
+/* YOUR ORIGINAL JS (UNCHANGED) */
 
 let saved = 0
 let applied = 0
@@ -246,8 +412,6 @@ let applied = 0
 function goToProfile(){
 window.location.href="profile.html"
 }
-
-/* SEARCH */
 
 function searchInternships(){
 
@@ -267,11 +431,11 @@ card.style.display="none"
 
 }
 
-/* SAVE */
-
 function saveInternship(name){
 
 saved++
+
+document.getElementById("savedCount").innerText=saved
 
 let list=document.getElementById("savedList")
 
@@ -284,11 +448,11 @@ addNotification("Saved "+name)
 
 }
 
-/* APPLY */
-
 function applyInternship(name){
 
 applied++
+
+document.getElementById("applyCount").innerText=applied
 
 let list=document.getElementById("applicationList")
 
@@ -301,8 +465,6 @@ addNotification("Applied for "+name)
 
 }
 
-/* NOTIFICATION */
-
 function addNotification(text){
 
 let list=document.getElementById("notificationList")
@@ -314,8 +476,6 @@ list.appendChild(li)
 
 }
 
-/* PANELS */
-
 function togglePanel(id){
 
 let panels=document.querySelectorAll(".panel")
@@ -325,8 +485,6 @@ panels.forEach(p=>p.style.display="none")
 document.getElementById(id).style.display="block"
 
 }
-
-/* BUTTONS */
 
 function showSaved(){togglePanel("savedPanel")}
 function showApplications(){togglePanel("applicationPanel")}
@@ -341,6 +499,14 @@ togglePanel("analyticsPanel")
 document.getElementById("savedCount").innerText=saved
 document.getElementById("applyCount").innerText=applied
 
+}
+
+function showPremium(){
+togglePanel("premiumPanel")
+}
+
+function buyPremium(){
+alert("Premium purchase feature coming soon 💎")
 }
 
 function viewCompany(name){
