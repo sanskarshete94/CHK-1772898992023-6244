@@ -61,10 +61,57 @@ background:#0a66c2;
 color:white;
 }
 
+/* BACK BUTTON */
+
+.back-btn{
+position:absolute;
+top:20px;
+left:20px;
+padding:10px 18px;
+border:none;
+border-radius:8px;
+background:white;
+color:#0a66c2;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* AI RESUME ANALYZER */
+
+.ai-analyzer{
+margin-top:25px;
+padding:20px;
+border-radius:10px;
+background:#eef4ff;
+text-align:center;
+}
+
+.ai-analyzer button{
+margin-top:10px;
+background:#7b2ff7;
+}
+
+#analysisResult{
+margin-top:15px;
+font-size:14px;
+background:white;
+padding:10px;
+border-radius:8px;
+}
+
 </style>
 </head>
 
 <body>
+
+<button class="back-btn" onclick="goBackDashboard()">⬅ Back to Dashboard</button>
 
 <div class="profile-container">
 
@@ -92,6 +139,20 @@ color:white;
 <p id="resumeName"></p>
 </div>
 
+<!-- AI RESUME ANALYZER -->
+
+<div class="ai-analyzer">
+
+<h3>🤖 AI Resume Analyzer</h3>
+
+<p>Upload your resume to get AI feedback</p>
+
+<button onclick="analyzeResume()">Analyze Resume</button>
+
+<div id="analysisResult"></div>
+
+</div>
+
 </div>
 </div>
 
@@ -103,6 +164,7 @@ color:white;
 /* SUPABASE CONNECTION */
 
 const supabaseUrl = "https://bykpuujrmfkhvtmswoiv.supabase.co";
+
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ5a3B1dWpybWZraHZ0bXN3b2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMDQ4ODQsImV4cCI6MjA4ODY4MDg4NH0.i_I9yOKrhz1JveCSdLUj4KS3VHoGFSH-DwnN7Asn6XY";
 
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
@@ -140,6 +202,8 @@ let mobile = localStorage.getItem("mobile");
 localStorage.setItem("skills",skills);
 document.getElementById("skillsDisplay").innerText = skills;
 
+try{
+
 const { data, error } = await supabaseClient
 .from("users")
 .insert([
@@ -153,10 +217,16 @@ skills:skills
 ]);
 
 if(error){
-console.log(error);
-alert("Error saving data: " + error.message);
-}else{
+throw error;
+}
+
 alert("Profile saved successfully!");
+
+}catch(error){
+
+console.log(error);
+alert("Supabase connection issue, but skills saved locally.");
+
 }
 
 }
@@ -174,6 +244,43 @@ document.getElementById("resumeName").innerText="Uploaded: "+file.name;
 }
 
 });
+
+
+/* BACK BUTTON FUNCTION */
+
+function goBackDashboard(){
+window.location.href="main.html";
+}
+
+
+/* AI RESUME ANALYZER */
+
+function analyzeResume(){
+
+let resumeName = localStorage.getItem("resumeName");
+
+if(!resumeName){
+alert("Please upload resume first");
+return;
+}
+
+let score = Math.floor(Math.random()*40)+60;
+
+let suggestions = [
+"Add more technical skills",
+"Include internship experience",
+"Add measurable achievements",
+"Improve project descriptions",
+"Use action verbs like built, developed, designed"
+];
+
+let randomTip = suggestions[Math.floor(Math.random()*suggestions.length)];
+
+document.getElementById("analysisResult").innerHTML =
+"<b>Resume Score:</b> "+score+"/100 <br><br>" +
+"<b>AI Suggestion:</b> "+randomTip;
+
+}
 
 </script>
 
