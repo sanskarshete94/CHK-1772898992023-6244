@@ -22,7 +22,6 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 
-
 // ================= LOGIN FUNCTION =================
 window.login = function () {
 
@@ -34,14 +33,11 @@ window.login = function () {
         return;
     }
 
-    // Save user info in browser
     localStorage.setItem("username", username);
     localStorage.setItem("role", role);
 
-    // Redirect to main page
     window.location.href = "main.html";
 };
-
 
 
 // ================= SAVE USER TO FIREBASE =================
@@ -67,7 +63,6 @@ window.saveUserData = async function () {
     }
 
 };
-
 
 
 // ================= SEARCH & FILTER =================
@@ -99,7 +94,6 @@ window.filterOpportunities = function () {
     });
 
 };
-
 
 
 // ================= ANIMATED COUNTERS =================
@@ -134,8 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
-// ================= SCROLL FADE-IN EFFECT =================
+// ================= SCROLL FADE EFFECT =================
 document.addEventListener("DOMContentLoaded", function () {
 
     const elements = document.querySelectorAll("section, .card");
@@ -163,8 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
-// ================= SAVE SKILLS TO FIREBASE =================
+// ================= SAVE SKILLS =================
 window.saveSkills = async function () {
 
     let skills = document.getElementById("skillsInput").value;
@@ -191,3 +183,83 @@ window.saveSkills = async function () {
     }
 
 };
+
+
+
+// ================= INTERNSHIP PAGE =================
+function openInternships(){
+
+document.querySelector(".dashboard").style.display="none";
+document.getElementById("internshipPage").style.display="block";
+
+}
+
+
+// ================= START INTERNSHIP =================
+function startFrontend(){alert("Frontend Internship Simulation Starting")}
+function startMarketing(){alert("Marketing Internship Simulation Starting")}
+function startUIUX(){alert("UI/UX Internship Simulation Starting")}
+function startData(){alert("Data Analyst Internship Simulation Starting")}
+function startBackend(){alert("Backend Internship Simulation Starting")}
+function startMobile(){alert("Mobile App Internship Simulation Starting")}
+function startAI(){alert("AI/ML Internship Simulation Starting")}
+function startCloud(){alert("Cloud Internship Simulation Starting")}
+
+
+// ================= SAVE INTERNSHIP =================
+function saveInternship(role){
+
+let list = document.getElementById("savedList")
+
+let li = document.createElement("li")
+li.innerText = role
+
+list.appendChild(li)
+
+addNotification("Saved " + role)
+
+}
+
+
+// ================= APPLY INTERNSHIP =================
+function applyInternship(role){
+
+let list = document.getElementById("applicationList")
+
+let li = document.createElement("li")
+li.innerText = role + " - Applied"
+
+list.appendChild(li)
+
+addNotification("Applied for " + role)
+
+}
+
+
+// ================= SIMULATION =================
+function showSimulation(){
+togglePanel("simulationPanel")
+}
+
+
+function startSimulation(role){
+
+alert("Simulation started for "+role+" Internship 🚀")
+
+addNotification("Started "+role+" simulation")
+
+}
+function submitSimulation(role){
+
+alert("✅ " + role + " simulation submitted!")
+
+addNotification(role + " simulation completed")
+
+}
+function submitSimulation(role){
+
+alert("✅ " + role + " simulation submitted!")
+
+addNotification(role + " simulation completed")
+
+}
