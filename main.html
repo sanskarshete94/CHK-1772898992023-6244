@@ -185,15 +185,15 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 </div>
 
 <div>
+<div>
+
 <button onclick="goToProfile()">Profile</button>
-<button onclick="showSaved()">Saved</button>
-<button onclick="showApplications()">Applications</button>
-<button onclick="showNotifications()">Notifications</button>
-<button onclick="showRecommendations()">AI Recommendations</button>
-<button onclick="showCompanies()">Companies</button>
-<button onclick="showAnalytics()">Analytics</button>
+
 <button onclick="showPremium()">Premium</button>
+
 <button onclick="logout()">Logout</button>
+
+</div>
 </div>
 
 </div>
@@ -201,7 +201,50 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <div class="dashboard">
 
 <h1>Welcome to your Dashboard 🚀</h1>
+<div class="dashboard-features">
 
+<div class="feature-card internship-card" onclick="openInternships()">
+<h3>💼 Internships</h3>
+<p>Explore available internship roles</p>
+</div>
+
+<div class="feature-card" onclick="showSaved()">
+<h3>⭐ Saved</h3>
+<p>View saved internships</p>
+</div>
+
+<div class="feature-card" onclick="showApplications()">
+<h3>📄 Applications</h3>
+<p>Track your internship applications</p>
+</div>
+
+<div class="feature-card" onclick="showNotifications()">
+<h3>🔔 Notifications</h3>
+<p>Check latest internship updates</p>
+</div>
+
+<div class="feature-card" onclick="showRecommendations()">
+<h3>🤖 AI Recommendations</h3>
+<p>Internships recommended for you</p>
+</div>
+
+<div class="feature-card" onclick="showCompanies()">
+<h3>🏢 Companies</h3>
+<p>Explore hiring companies</p>
+</div>
+
+<div class="feature-card" onclick="showAnalytics()">
+<h3>📊 Analytics</h3>
+<p>View your dashboard statistics</p>
+</div>
+
+<div class="feature-card simulation-card" onclick="showSimulation()">
+<h3>🎮 Simulation</h3>
+<p>Practice real internship tasks</p>
+</div>
+
+</div>
+</div>
 <!-- STATS COUNTERS -->
 
 <div class="stats-container">
@@ -232,75 +275,6 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <input type="text" id="searchInput" placeholder="Search internships..." onkeyup="searchInternships()">
 </div>
 
-<!-- INTERNSHIPS -->
-
-<div class="opportunities" id="internshipList">
-
-<div class="card">
-
-<img src="https://logo.clearbit.com/google.com" class="company-logo">
-
-<h3>Frontend Developer Intern</h3>
-
-<p>Company: Google</p>
-<p>Location: Remote</p>
-<p>Stipend: ₹25,000/month</p>
-<p>Duration: 3 Months</p>
-
-<button onclick="applyInternship('Frontend Developer Intern')">Apply</button>
-<button onclick="saveInternship('Frontend Developer Intern')">Save</button>
-
-</div>
-
-<div class="card">
-
-<img src="https://logo.clearbit.com/amazon.com" class="company-logo">
-
-<h3>Marketing Intern</h3>
-
-<p>Company: Amazon</p>
-<p>Location: Bangalore</p>
-<p>Stipend: ₹20,000/month</p>
-<p>Duration: 3 Months</p>
-
-<button onclick="applyInternship('Marketing Intern')">Apply</button>
-<button onclick="saveInternship('Marketing Intern')">Save</button>
-
-</div>
-
-<div class="card">
-
-<img src="https://logo.clearbit.com/adobe.com" class="company-logo">
-
-<h3>UI/UX Designer</h3>
-
-<p>Company: Adobe</p>
-<p>Location: Remote</p>
-<p>Stipend: ₹22,000/month</p>
-<p>Duration: 4 Months</p>
-
-<button onclick="applyInternship('UI/UX Designer')">Apply</button>
-<button onclick="saveInternship('UI/UX Designer')">Save</button>
-
-</div>
-
-<div class="card">
-
-<img src="https://logo.clearbit.com/microsoft.com" class="company-logo">
-
-<h3>Data Analyst Intern</h3>
-
-<p>Company: Microsoft</p>
-<p>Location: Hyderabad</p>
-<p>Stipend: ₹30,000/month</p>
-<p>Duration: 6 Months</p>
-
-<button onclick="applyInternship('Data Analyst Intern')">Apply</button>
-<button onclick="saveInternship('Data Analyst Intern')">Save</button>
-
-</div>
-
-</div>
 
 <!-- SAVED -->
 
@@ -375,10 +349,34 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 <h2>📊 Dashboard Analytics</h2>
 
-<p>Total Saved Internships: <span id="savedCount">0</span></p>
-<p>Total Applications: <span id="applyCount">0</span></p>
+<p>Total Saved Internships: <span id="savedAnalytics">0</span></p>
+<p>Total Applications: <span id="applyAnalytics">0</span></p>
 
 </div>
+<!-- SIMULATION PANEL -->
+
+<div class="panel" id="simulationPanel">
+
+<h2>🎮 Internship Simulation</h2>
+
+<div class="card">
+
+<h3>💻 Frontend Developer Demo Task</h3>
+
+<p>Create a login form using HTML & CSS.</p>
+
+<textarea style="width:100%;height:120px;"></textarea>
+
+<button onclick="submitSimulation('Frontend Developer')">
+Submit Task
+</button>
+
+</div>
+
+</div>
+
+
+
 
 <!-- PREMIUM -->
 
@@ -496,10 +494,12 @@ function showAnalytics(){
 
 togglePanel("analyticsPanel")
 
-document.getElementById("savedCount").innerText=saved
-document.getElementById("applyCount").innerText=applied
+document.getElementById("savedAnalytics").innerText=saved
+document.getElementById("applyAnalytics").innerText=applied
 
 }
+
+
 
 function showPremium(){
 togglePanel("premiumPanel")
@@ -516,8 +516,116 @@ alert(name+" company profile coming soon")
 function logout(){
 window.location.href="index.html"
 }
+/* OPEN INTERNSHIP PAGE */
 
+function openInternships(){
+
+document.querySelector(".dashboard").style.display="none"
+document.querySelector(".stats-container").style.display="none"
+document.querySelector(".search-bar").style.display="none"
+
+let panels=document.querySelectorAll(".panel")
+panels.forEach(p=>p.style.display="none")
+
+document.getElementById("internshipPage").style.display="block"
+
+}
+
+/* START INTERNSHIP BUTTONS */
+
+function startFrontend(){
+alert("Frontend Developer Internship Started 🚀")
+}
+
+function startMarketing(){
+alert("Marketing Internship Started 🚀")
+}
+
+function startUIUX(){
+alert("UI/UX Designer Internship Started 🚀")
+}
+
+function startData(){
+alert("Data Analyst Internship Started 🚀")
+}
+
+/* SIMULATION BUTTON FIX */
+
+function showSimulation(){
+
+togglePanel("simulationPanel")
+
+}
+function goBackDashboard(){
+
+document.querySelector(".dashboard").style.display="block"
+
+document.querySelector(".stats-container").style.display="flex"
+
+document.querySelector(".search-bar").style.display="block"
+
+document.getElementById("internshipPage").style.display="none"
+
+}
 </script>
+<section id="internshipPage" style="display:none">
 
+<button onclick="goBackDashboard()" style="margin-bottom:20px;padding:8px 15px;border:none;border-radius:6px;background:#0a66c2;color:white;cursor:pointer;">
+⬅ Back to Dashboard
+</button>
+
+<h1>Available Internships</h1>
+
+<div class="internship-grid">
+
+<div class="intern-card">
+<h3>💻 Frontend Developer</h3>
+<p>Work with HTML, CSS, JavaScript to build UI.</p>
+
+<button onclick="startFrontend()">Start Internship</button>
+
+<button onclick="saveInternship('Frontend Developer')">
+Save
+</button>
+
+<button onclick="applyInternship('Frontend Developer')">
+Apply
+</button>
+
+</div>
+
+<div class="intern-card">
+<h3>📈 Marketing Intern</h3>
+<p>Learn digital marketing and growth strategies.</p>
+
+<button onclick="startMarketing()">Start Internship</button>
+<button onclick="saveInternship('Marketing Intern')">Save</button>
+<button onclick="applyInternship('Marketing Intern')">Apply</button>
+
+</div>
+
+<div class="intern-card">
+<h3>🎨 UI/UX Designer</h3>
+<p>Design user-friendly and modern interfaces.</p>
+
+<button onclick="startUIUX()">Start Internship</button>
+<button onclick="saveInternship('UI/UX Designer')">Save</button>
+<button onclick="applyInternship('UI/UX Designer')">Apply</button>
+
+</div>
+
+<div class="intern-card">
+<h3>📊 Data Analyst</h3>
+<p>Analyze data and generate insights.</p>
+
+<button onclick="startData()">Start Internship</button>
+<button onclick="saveInternship('Data Analyst')">Save</button>
+<button onclick="applyInternship('Data Analyst')">Apply</button>
+
+</div>
+
+</div>
+
+</section>
 </body>
-</html>
+</html> 
