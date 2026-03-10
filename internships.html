@@ -6,11 +6,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Internship Listings | MicroIntern</title>
+<title>Internships | MicroIntern</title>
 
 <link rel="stylesheet" href="style.css">
 
 <style>
+
+/* PAGE BACKGROUND */
 
 body{
 margin:0;
@@ -20,11 +22,39 @@ min-height:100vh;
 padding:40px;
 }
 
+/* TITLE */
+
 h1{
 text-align:center;
 color:white;
 margin-bottom:40px;
 }
+
+/* NAVIGATION BUTTONS */
+
+.nav-buttons{
+text-align:center;
+margin-bottom:30px;
+}
+
+.nav-buttons button{
+padding:10px 20px;
+margin:5px;
+border:none;
+border-radius:8px;
+background:white;
+color:#0a66c2;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.nav-buttons button:hover{
+transform:translateY(-2px);
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* INTERNSHIP GRID */
 
 .internship-container{
 display:grid;
@@ -34,11 +64,19 @@ max-width:1000px;
 margin:auto;
 }
 
+/* CARD DESIGN */
+
 .card{
 background:white;
-border-radius:10px;
+border-radius:12px;
 padding:20px;
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,0.25);
 }
 
 .card h3{
@@ -47,33 +85,27 @@ color:#0a66c2;
 }
 
 .card p{
-margin:5px 0;
+margin:6px 0;
+color:#333;
 }
 
-button{
+/* APPLY BUTTON */
+
+.card button{
 margin-top:10px;
 padding:10px;
 border:none;
-border-radius:6px;
+border-radius:8px;
 background:#0a66c2;
 color:white;
 cursor:pointer;
 width:100%;
+font-weight:600;
+transition:0.3s;
 }
 
-button:hover{
+.card button:hover{
 background:#004182;
-}
-
-.nav-buttons{
-text-align:center;
-margin-bottom:30px;
-}
-
-.nav-buttons button{
-width:auto;
-padding:10px 20px;
-margin:5px;
 }
 
 </style>
@@ -82,45 +114,84 @@ margin:5px;
 
 <body>
 
-<h1>Available Internships</h1>
+<h1>💼 Available Internships</h1>
 
 <div class="nav-buttons">
-<button onclick="window.location.href='main.html'">Home</button>
-<button onclick="window.location.href='profile.html'">Profile</button>
+
+<button onclick="window.location.href='main.html'">
+🏠 Dashboard
+</button>
+
+<button onclick="window.location.href='profile.html'">
+👤 Profile
+</button>
+
 </div>
 
 <div class="internship-container">
 
 <div class="card">
-<h3>Frontend Developer Intern</h3>
+
+<h3>💻 Frontend Developer Intern</h3>
+
 <p><b>Company:</b> TechNova</p>
+
 <p><b>Duration:</b> 3 Months</p>
+
 <p><b>Location:</b> Remote</p>
-<button onclick="apply('Frontend Developer Intern')">Apply</button>
+
+<button onclick="apply('Frontend Developer Intern')">
+Apply Now
+</button>
+
 </div>
 
 <div class="card">
-<h3>Data Analyst Intern</h3>
+
+<h3>📊 Data Analyst Intern</h3>
+
 <p><b>Company:</b> DataCore</p>
+
 <p><b>Duration:</b> 2 Months</p>
+
 <p><b>Location:</b> Hybrid</p>
-<button onclick="apply('Data Analyst Intern')">Apply</button>
+
+<button onclick="apply('Data Analyst Intern')">
+Apply Now
+</button>
+
 </div>
 
 <div class="card">
-<h3>UI/UX Designer Intern</h3>
+
+<h3>🎨 UI/UX Designer Intern</h3>
+
 <p><b>Company:</b> CreativeLabs</p>
+
 <p><b>Duration:</b> 3 Months</p>
+
 <p><b>Location:</b> Remote</p>
-<button onclick="apply('UI/UX Designer Intern')">Apply</button>
+
+<button onclick="apply('UI/UX Designer Intern')">
+Apply Now
+</button>
+
 </div>
 
 <div class="card">
-<h3>Mobile App Developer Intern</h3>
+
+<h3>📱 Mobile App Developer Intern</h3>
+
 <p><b>Company:</b> AppWorks</p>
+
 <p><b>Duration:</b> 4 Months</p>
+
 <p><b>Location:</b> On-site</p>
-<button onclick="apply('Mobile App Developer Intern')">Apply</button>
+
+<button onclick="apply('Mobile App Developer Intern')">
+Apply Now
+</button>
+
 </div>
 
 </div>
@@ -129,18 +200,18 @@ margin:5px;
 
 function apply(internship){
 
-let applied=localStorage.getItem("applications") || ""
+let applied = localStorage.getItem("applications") || ""
 
 applied += internship + ", "
 
-localStorage.setItem("applications",applied)
+localStorage.setItem("applications", applied)
 
-alert("Application submitted for " + internship)
+alert("✅ Application submitted for " + internship)
 
 }
 
 </script>
 
 </body>
-
+<script src="script.js"></script>
 </html>
