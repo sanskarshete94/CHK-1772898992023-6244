@@ -251,15 +251,78 @@ addNotification("Started "+role+" simulation")
 }
 function submitSimulation(role){
 
-alert("✅ " + role + " simulation submitted!")
+let frontend=document.getElementById("frontendTask")
+let data=document.getElementById("dataTask")
 
-addNotification(role + " simulation completed")
+let answer=""
+
+if(frontend) answer=frontend.value
+if(data && answer==="") answer=data.value
+
+if(answer.trim()===""){
+alert("⚠ Please write your response before submitting")
+return
+}
+
+alert("✅ Response submitted successfully!")
+
+addNotification(role+" simulation response submitted")
+
+if(frontend) frontend.value=""
+if(data) data.value=""
 
 }
-function submitSimulation(role){
+window.showAdvisor = function(){
+togglePanel("advisorPanel")
+}
 
-alert("✅ " + role + " simulation submitted!")
 
-addNotification(role + " simulation completed")
+window.getAdvice = function(){
+
+let skills = document.getElementById("skillInput").value.toLowerCase()
+let list = document.getElementById("adviceList")
+
+list.innerHTML = ""
+
+if(skills.includes("html") || skills.includes("css") || skills.includes("javascript")){
+
+let li = document.createElement("li")
+li.innerText = "Frontend Developer Internship"
+list.appendChild(li)
+
+}
+
+if(skills.includes("python") || skills.includes("data")){
+
+let li = document.createElement("li")
+li.innerText = "Data Analyst Internship"
+list.appendChild(li)
+
+}
+
+if(skills.includes("design") || skills.includes("figma")){
+
+let li = document.createElement("li")
+li.innerText = "UI/UX Designer Internship"
+list.appendChild(li)
+
+}
+
+if(skills.includes("marketing") || skills.includes("seo")){
+
+let li = document.createElement("li")
+li.innerText = "Digital Marketing Internship"
+list.appendChild(li)
+
+}
+
+if(list.innerHTML === ""){
+
+let li = document.createElement("li")
+li.innerText = "No recommendation found. Try adding more skills."
+
+list.appendChild(li)
+
+}
 
 }
