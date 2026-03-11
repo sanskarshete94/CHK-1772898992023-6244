@@ -202,7 +202,10 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 <h1>Welcome to your Dashboard 🚀</h1>
 <div class="dashboard-features">
-
+<div class="feature-card" onclick="showAdvisor()">
+<h3>🤖 AI Career Advisor</h3>
+<p>Get internship suggestions based on your skills</p>
+</div>  
 <div class="feature-card internship-card" onclick="openInternships()">
 <h3>💼 Internships</h3>
 <p>Explore available internship roles</p>
@@ -296,7 +299,25 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <h2>🔔 Notifications</h2>
 <ul id="notificationList"></ul>
 </div>
+<!-- AI CAREER ADVISOR PANEL -->
 
+<div class="panel" id="advisorPanel">
+
+<h2>🤖 AI Career Advisor</h2>
+
+<p>Enter your skills:</p>
+
+<input type="text" id="skillInput" placeholder="Example: HTML, CSS, JavaScript">
+
+<br><br>
+
+<button onclick="getAdvice()">Get Recommendations</button>
+
+<h3>Recommended Internships</h3>
+
+<ul id="adviceList"></ul>
+
+</div>
 <!-- AI RECOMMENDATIONS -->
 
 <div class="panel" id="recommendationPanel">
@@ -627,5 +648,6 @@ Apply
 </div>
 
 </section>
+<script type="module" src="script.js"></script>
 </body>
 </html> 
